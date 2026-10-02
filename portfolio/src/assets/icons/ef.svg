@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <circle
+    cx="64"
+    cy="64"
+    r="56"
+    fill="none"
+    stroke="#14dcff"
+    stroke-width="6"/>
+
+  <text
+    x="64"
+    y="95"
+    text-anchor="middle"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-size="84"
+    font-weight="700"
+    fill="#14dcff">
+    EF
+  </text>
+</svg>
