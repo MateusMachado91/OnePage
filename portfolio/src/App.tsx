@@ -1,5 +1,47 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import outlookIcon from './assets/icons/outlook-svgrepo-com.svg'
+import csharp2Icon from './assets/icons/csharp2.svg'
+import dotnet2Icon from './assets/icons/NET.svg'
+import reactIcon from './assets/icons/react.svg'
+import azureIcon from './assets/icons/azure2.svg'
+import databaseIcon from './assets/icons/bancodados.svg'
+import python2Icon from './assets/icons/python2.svg'
+import ibmIcon from './assets/icons/ibm.svg'
+import csharpIcon from './assets/icons/csharp.svg';
+import dotnetIcon from './assets/icons/dotnet.svg';
+import blazorIcon from './assets/icons/blazor.svg';
+import pythonIcon from './assets/icons/python.svg';
+import firebaseIcon from './assets/icons/firebase.svg';
+import sqliteIcon from './assets/icons/sqlite.svg';
+import javascriptIcon from './assets/icons/javascript.svg';
+import typescriptIcon from './assets/icons/typescript.svg';
+import bootstrapIcon from './assets/icons/bootstrap.svg';
+import css3Icon from './assets/icons/css3.svg';
+import gitIcon from './assets/icons/git.svg';
+
+import pageBanri from './assets/page_banri.fw.png';
+import logo from './assets/logo.png';
+import pageCiaci from './assets/ciaci.png';
+import pageJcl from './assets/jcl.png';
+
+
+
+const techNodes = [
+  { id: 'azure', icon: azureIcon, title: 'Azure', sub: 'Cloud & Deploy', x: 50, y: 15 },
+  { id: 'blazor', icon: reactIcon, title: 'Blazor', sub: 'Frontend moderno', x: 20, y: 31 },
+  { id: 'csharp', icon: csharp2Icon, title: 'C#', sub: 'Código limpo', x: 80, y: 31 },
+  { id: 'ibm', icon: ibmIcon, title: 'IBM MQ', sub: 'Mensageria corporativa', x: 17, y: 63 },
+  { id: 'python', icon: python2Icon, title: 'Python', sub: 'Automação e integrações', x: 83, y: 63 },
+  { id: 'sql', icon: databaseIcon, title: 'SQLite / SQL Server', sub: 'Banco de dados', x: 50, y: 85 },
+]
+
+const techTags = [
+  { label: 'APIs REST', cls: 'tag-tl' },
+  { label: 'Microsserviços', cls: 'tag-tr' },
+  { label: 'Sistemas Legados', cls: 'tag-bl' },
+  { label: 'Modernização', cls: 'tag-br' },
+]
 
 const stats = [
   {value: '8+', label: 'Projetos Concluídos', icon: 'bi bi-code-slash'},
@@ -13,17 +55,17 @@ const stats = [
 
 
 const skills = [
-  { name: 'C Sharp', icon: '/src/assets/icons/csharp.svg' },
-  { name: 'ASP.NET Core', icon: '/src/assets/icons/dotnet.svg' },
-  { name: 'Blazor', icon: '/src/assets/icons/blazor.svg' },
-  { name: 'Python', icon: '/src/assets/icons/python.svg' },
-  { name: 'Firebase', icon: '/src/assets/icons/firebase.svg' },
-  { name: 'SQLite', icon: '/src/assets/icons/sqlite.svg' },
-  { name: 'JavaScript', icon: '/src/assets/icons/javascript.svg' },
-  { name: 'TypeScript', icon: '/src/assets/icons/typescript.svg' },
-  { name: 'Bootstrap', icon: '/src/assets/icons/bootstrap.svg' },
-  { name: 'CSS 3', icon: '/src/assets/icons/css3.svg' },
-  { name: 'Git', icon: '/src/assets/icons/git.svg' },
+  { name: 'C Sharp', icon: csharpIcon },
+  { name: 'ASP.NET Core', icon: dotnetIcon },
+  { name: 'Blazor', icon: blazorIcon },
+  { name: 'Python', icon: pythonIcon },
+  { name: 'Firebase', icon: firebaseIcon },
+  { name: 'SQLite', icon: sqliteIcon },
+  { name: 'JavaScript', icon: javascriptIcon },
+  { name: 'TypeScript', icon: typescriptIcon },
+  { name: 'Bootstrap', icon: bootstrapIcon },
+  { name: 'CSS 3', icon: css3Icon },
+  { name: 'Git', icon: gitIcon },
 ];
 
 const projects = [
@@ -32,28 +74,31 @@ const projects = [
     description: 'Ferramenta web para gerenciamento de filas IBM MQ, adaptada para o ambiente do Banrisul: conecta a Queue Managers, lista filas com mensagens e permite consultá-las em tempo real.',
     status: 'EM DESTAQUE',
     tech: ['ASP.NET Core', 'Blazor', 'C#', 'IBM MQ'],
-    image: '/src/assets/page_banri.fw.png',
+    image: pageBanri,
   },
   {
-    title: 'Migração de Sistema Legado VB6 → Blazor',
-    description: 'Modernização de um sistema bancário legado escrito em VB6 para ASP.NET Core Blazor, ganhando escalabilidade, manutenibilidade e performance.',
+    title: 'Redesign Heráldico da CIA-CI (BACO)',
+    description: 'Projeto de identidade visual criado para os bombeiros da BACO em 2011, modernizando o brasão e adequando-o às normas da Aeronáutica.',
     status: 'EM DESTAQUE',
-    tech: ['ASP.NET Core', 'Blazor', 'C#', 'VB6'],
+    tech: ['FireWorks CS3', 'PhotoShop CS3'],
+    image: pageCiaci,
   },
   {
     title: 'Automação de Relatórios Bancários',
     description: 'Scripts em Python para automatizar a geração e o envio de relatórios bancários, reduzindo o tempo operacional da equipe.',
     status: 'EM DESTAQUE',
     tech: ['Python', 'Automação', 'Banco'],
+    image: pageJcl,
   },
 ]
 
 const timeline = [
-  { year: '2014', description: 'Início na área técnica na Serede, instalação e manutenção de telefonia e internet ADSL' },
-  { year: '2021', description: 'Início da graduação em Análise e Desenvolvimento de Sistemas e atuação como Monitor Técnico na J5 Telecom' },
-  { year: '2023', description: 'Conclusão do curso de Análise e Desenvolvimento de Sistemas e início de Ciências da Computação' },
-  { year: '2025', description: 'Ingresso no Banrisul como Desenvolvedor de Software: migração de sistemas VB6 para Blazor e mensageria BSM MQ' },
-  { year: '2026', description: 'Evoluindo em automação com Python e integração de sistemas críticos no ambiente bancário' },
+  { year: '2010', description: 'Primeiros projetos com WordPress e criação de sites.' },
+  { year: '2014', description: 'Início na área técnica na Serede, atuando com instalação e manutenção de internet ADSL' },
+  { year: '2017', description: 'Abertura de negócio próprio focado em Design Gráfico e soluções digitais.' },
+  { year: '2021', description: 'Início da graduação em Análise e Desenvolvimento de Sistemas' },
+  { year: '2023', description: 'Conclusão de ADS e ingresso em Ciência da Computação.' },
+  { year: '2025', description: 'Ingresso no Banrisul como Desenvolvedor de Software, participando da modernização de sistemas' },
 ]
 
 function AnimatedStatValue({ value, start }: { value: string; start: boolean }) {
@@ -86,7 +131,9 @@ function AnimatedStatValue({ value, start }: { value: string; start: boolean }) 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [cvStatus, setCvStatus] = useState<'idle' | 'loading' | 'done'>('idle')
-  const [statsVisible, setStatsVisible] = useState(false)
+  const [statsVisible, setStatsVisible] = useState(
+    () => typeof window !== 'undefined' && !('IntersectionObserver' in window),
+  )
   const [previewImage, setPreviewImage] = useState<string | null>(null)
 
   const handleDownloadCv = () => {
@@ -94,7 +141,7 @@ function App() {
     setCvStatus('loading')
 
     const link = document.createElement('a')
-    link.href = '/cv.pdf'
+    link.href = '/src/assets/CurrículoMateus.pdf'
     link.download = 'Mateus-Machado-CV.pdf'
     link.click()
 
@@ -156,7 +203,6 @@ function App() {
 
     if (!('IntersectionObserver' in window)) {
       buildContainers.forEach((el) => el.classList.add('in-view'))
-      setStatsVisible(true)
       return undefined
     }
 
@@ -187,7 +233,7 @@ function App() {
         <div className="header-container">
           <div className="logo">
             <div className="logo">
-              <img src="/src/assets/logo.png" alt="Mateus Machado" />
+              <img src={logo} alt="Mateus Machado" />
             </div>
             <div className="logo-text">
               <span><strong>Mateus</strong></span>
@@ -233,14 +279,61 @@ function App() {
                 Desenvolvedor de Software focado em modernização de sistemas legados, automação de processos e integração de aplicações, atuando com ASP.NET Core Blazor, Python e mensageria corporativa (BSM MQ).
               </p>
               <div className="hero-cta">
-                <a href="#projetos" className="btn btn-primary">VER PROJETOS <i className="bi bi-arrow-right section-icon-white" aria-hidden="true"></i></a>
+                <a href="#projetos" className="btn btn-primary">VER PROJETOS</a>
                 <a href="#contato" className="glow-on-hover">ENTRAR EM CONTATO  <i className="bi bi-envelope section-icon" aria-hidden="true"></i></a>
               </div>
             </div>
             <div className="hero-image">
-              
-                <img src="/src/assets/home.png" alt="Mateus Machado" />
-              
+              <div className="hero-tech-map" aria-label="Stack principal .NET">
+                <svg className="tech-lines" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle className="tech-ring ring-outer" cx="50" cy="50" r="47" />
+                  <circle className="tech-ring ring-inner" cx="50" cy="50" r="36" />
+                  {techNodes.map((n, i) => (
+                    <g key={n.id}>
+                      <line className="tech-line-base" x1="50" y1="50" x2={n.x} y2={n.y} />
+                      <line
+                        className="tech-line-pulse"
+                        pathLength="100"
+                        x1="50" y1="50" x2={n.x} y2={n.y}
+                        style={{ animationDelay: `${i * 0.55}s` }}
+                      />
+                      <line
+                        className="tech-line-pulse pulse-back"
+                        pathLength="100"
+                        x1={n.x} y1={n.y} x2="50" y2="50"
+                        style={{ animationDelay: `${i * 0.55 + 1.4}s` }}
+                      />
+                    </g>
+                  ))}
+                </svg>
+
+                {techTags.map((t) => (
+                  <span key={t.label} className={`tech-tag-pill ${t.cls}`}>{t.label}</span>
+                ))}
+
+                <div className="tech-core">
+                  <img src={dotnet2Icon} alt="" className="tech-icon" />
+                  <strong>.NET</strong>
+                  <small>Sistemas que conectam negócios</small>
+                </div>
+
+                {techNodes.map((n, i) => (
+                  <div
+                    key={n.id}
+                    className="tech-node"
+                    style={{ left: `${n.x}%`, top: `${n.y}%`, animationDelay: `${i * -0.8}s` }}
+                  >
+                    {n.icon ? (
+                      <img src={n.icon} alt="" className="tech-icon" />
+                    ) : (
+                      
+                      <span className="tech-wordmark">IBM</span>
+                    )}
+                    
+                    <small>{n.sub}</small>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -400,10 +493,12 @@ function App() {
               <a href="mailto:mateusmachado.s@hotmail.com" className="contact-card" style={{ '--i': 0 } as React.CSSProperties}>
                 <div className="contact-content">
                   <div className="contact-top">
-                    <i className="bi bi-envelope contact-icon"></i>
+                    
+                    <img src={outlookIcon} alt="Outlook" className="contact-icon" />
+                    
                     <h3>EMAIL</h3>
                   </div>
-                  <p>mateusmachado.s@hotmail.com</p>
+                  {/*<p>mateusmachado.s@hotmail.com</p>*/}
                 </div>
               </a>
 
@@ -413,7 +508,7 @@ function App() {
                     <i className="bi bi-linkedin contact-icon"></i>
                     <h3>LINKEDIN</h3>
                   </div>
-                  <p>/in/mateusmachado91</p>
+                  {/*<p>/in/mateusmachado91</p>*/}
                 </div>
               </a>
 
@@ -423,17 +518,17 @@ function App() {
                     <i className="bi bi-github contact-icon"></i>
                     <h3>GITHUB</h3>
                   </div>
-                  <p>/MateusMachado91</p>
+                  {/*<p>/MateusMachado91</p>*/}
                 </div>
               </a>
 
-              <a href="https://whatsapp.com" target="_blank" rel="noreferrer" className="contact-card" style={{ '--i': 3 } as React.CSSProperties}>
+              <a href="https://wa.me/5551986029959" target="_blank" rel="noreferrer" className="contact-card" style={{ '--i': 3 } as React.CSSProperties}>
                 <div className="contact-content">
                   <div className="contact-top">
                     <i className="bi bi-whatsapp contact-icon"></i>
                     <h3>WHATSAPP</h3>
                   </div>
-                  <p>+55 51 98602-9959</p>
+                  {/*<p>+55 51 98602-9959</p>*/}
                 </div>
               </a>
             </div>
